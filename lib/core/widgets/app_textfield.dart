@@ -83,6 +83,8 @@ class _AppTextFieldState extends State<AppTextField> {
       decoration: InputDecoration(
         iconColor: ColorManager.grayColor,
         border: InputBorder.none,
+        filled: true,
+        fillColor: ColorManager.borderColor,
         // focusedErrorBorder: StylesManager.borderTextFiled(
         //     color: ColorManager.secondary, width: 4),
         // errorBorder: StylesManager.borderTextFiled(
