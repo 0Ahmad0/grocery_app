@@ -10,6 +10,7 @@ class ColorManager{
 
   static const Color blackColor =  Color(0xFF000000);
   static const Color whiteColor =  Color(0xFFFFFFFF);
+
   static const Color grayColor =  Color(0xFF868889);
 
   static const Color scaffoldColor =  Color(0xFFF4F5F9);

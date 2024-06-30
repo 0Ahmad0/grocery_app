@@ -3,4 +3,6 @@ class StringManager{
   static const String login = "Login";
   static const String signup = "Signup";
   static const String onBoarding = "OnBoarding";
+  static const String requiredField = "Required Field*";
+
 }
