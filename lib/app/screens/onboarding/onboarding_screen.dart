@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery/app/screens/onboarding/logic/on_boarding_cubit.dart';
 import 'package:grocery/app/screens/onboarding/widgets/on_boarding_child_widget.dart';
+import 'package:grocery/core/helpers/extensions.dart';
+import 'package:grocery/core/routing/routes.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_textfield.dart';
 import 'logic/on_boarding_state.dart';
@@ -24,8 +26,7 @@ class OnBoardingScreen extends StatelessWidget {
               if (state is OnboardingCompleted) {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Scaffold(
-                  )),
+                  MaterialPageRoute(builder: (context) => Scaffold()),
                 );
               }
             }, builder: (context, state) {
@@ -45,7 +46,12 @@ class OnBoardingScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 60.h),
             child: ZoomIn(
               delay: Duration(milliseconds: 600),
-              child: AppButton(label: 'Login'),
+              child: AppButton(
+                label: 'Login',
+                onPressed: (){
+                  context.pushNamed(Routes.homeScreen);
+                },
+              ),
             ),
           ),
         ],

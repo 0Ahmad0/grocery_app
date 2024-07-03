@@ -26,6 +26,7 @@ dependencies:
 
   # A Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling.
   google_fonts: ^4.0.4
+
   # For Splash Screen
   flutter_native_splash: ^2.2.19
 
@@ -34,7 +35,21 @@ dependencies:
 
   # Customizable animated page indicator with a set of built-in effects
   smooth_page_indicator: ^1.1.0
+
+  # State Management
   flutter_bloc: ^8.1.6
+
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics
+  flutter_svg: ^2.0.5
+
+  # A simple yet fully customizable ratingbar for flutter which also include a rating bar indicator, supporting any fraction of rating
+  flutter_rating_bar: ^4.0.1
+
+  # A Flutter package that allows for dynamic expansion and collapse of text, as well as interactions with text patterns such as hashtags, URLs, and mentions.
+  readmore: ^2.2.0
+
+  # A carousel slider widget, support infinite scroll and custom child widget
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

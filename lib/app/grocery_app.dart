@@ -9,6 +9,7 @@ import 'package:grocery/core/utils/color_manager.dart';
 import 'package:grocery/core/utils/const_value_manage.dart';
 import 'package:grocery/core/utils/string_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery/core/utils/style_manager.dart';
 
 class GroceryApp extends StatelessWidget {
   const GroceryApp({super.key, required this.appRouter});
@@ -26,11 +27,17 @@ class GroceryApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: StringManager.appName,
           theme: ThemeData(
-            fontFamily: GoogleFonts.poppins().fontFamily,
-            primaryColor: ColorManager.primaryColor,
-            primarySwatch: ColorManager.primaryColor.toMaterialColor(),
-            scaffoldBackgroundColor: ColorManager.scaffoldColor
-          ),
+              fontFamily: GoogleFonts.poppins().fontFamily,
+              primaryColor: ColorManager.primaryColor,
+              appBarTheme: AppBarTheme(
+                  backgroundColor: ColorManager.whiteColor,
+                  elevation: 0.0,
+                  titleTextStyle: StyleManager.font18Medium().copyWith(
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                  ),
+                  centerTitle: true),
+              primarySwatch: ColorManager.primaryColor.toMaterialColor(),
+              scaffoldBackgroundColor: ColorManager.scaffoldColor),
           initialRoute: Routes.onBoardingScreen,
           onGenerateRoute: appRouter.generateRoute,
         );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/app/screens/login/login_screen.dart';
+import 'package:grocery/app/screens/categories/categories_screen.dart';
+import 'package:grocery/app/screens/home/home_screen.dart';
 import 'package:grocery/app/screens/onboarding/onboarding_screen.dart';
 
-import '../../app/screens/signup/signup_screen.dart';
+import '../../app/screens/details/details_screen.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -11,11 +12,14 @@ class AppRouter {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => OnBoardingScreen());
 
-      case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
-      case Routes.signUpScreen:
-        return MaterialPageRoute(builder: (_) => SignupScreen());
+      case Routes.categoriesScreen:
+        return MaterialPageRoute(builder: (_) => CategoriesScreen());
+
+      case Routes.detailsScreen:
+        return MaterialPageRoute(builder: (_) => DetailsScreen());
 
       default:
         return MaterialPageRoute(

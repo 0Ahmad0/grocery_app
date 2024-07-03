@@ -6,6 +6,7 @@ class ColorManager{
   static const Color primaryLightColor =  Color(0xFFEBFFD7);
 
   static const Color borderColor =  Color(0xFFEBEBEB);
+  static const Color detailsContainerColor =  Color(0xFFF2FFE6);
 
 
   static const Color blackColor =  Color(0xFF000000);
