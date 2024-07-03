@@ -87,10 +87,12 @@ class HomeScreen extends StatelessWidget {
               items: imageUrls.map((url) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Image.network(url, fit: BoxFit.cover),
+                    return FadeInDown(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Image.network(url, fit: BoxFit.cover),
+                      ),
                     );
                   },
                 );
@@ -116,25 +118,27 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: CategoryConst.categories.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Flexible(
-                          flex: 2,
-                          child: SvgPicture.asset(
-                              CategoryConst.categories[index].image),
-                        ),
-                        Flexible(
-                          child: Text(
-                            CategoryConst.categories[index].name,
-                            style: StyleManager.font10Medium(
-                                color: ColorManager.grayColor),
+                  return ZoomIn(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: SvgPicture.asset(
+                                CategoryConst.categories[index].image),
                           ),
-                        )
-                      ],
+                          Flexible(
+                            child: Text(
+                              CategoryConst.categories[index].name,
+                              style: StyleManager.font10Medium(
+                                  color: ColorManager.grayColor),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -161,86 +165,93 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: .75),
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: ColorManager.scaffoldColor,
-                    ),
-                    child: Stack(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                  return FadeInLeft(
+                    child: InkWell(
+                      onTap: (){
+                        context.pushNamed(Routes.detailsScreen);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: ColorManager.scaffoldColor,
+                        ),
+                        child: Stack(
                           children: [
-                            Flexible(
-                              flex: 4,
-                                child: Image.asset(
-                              AssetsManager.lemonIMG,
-                            )),
-                            Flexible(
-                                child: Text(
-                              '\$2.09',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: StyleManager.font12Medium(
-                                  color: ColorManager.primaryDarkColor),
-                            )),
-                            Flexible(
-                                child: Text(
-                              'Pomegranate',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                              style: StyleManager.font14Bold(),
-                            )),
-                            Flexible(
-
-                                child: Text(
-                              '1.50 lbs',
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  flex: 4,
+                                    child: Image.asset(
+                                  AssetsManager.lemonIMG,
+                                )),
+                                Flexible(
+                                    child: Text(
+                                  '\$2.09',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                              style: StyleManager.font12Medium(
-                                color: ColorManager.grayColor,
-                              ),
-                            )),
-                            const Spacer(),
-                            Divider(),
-                            TextButton.icon(
-                              onPressed: () {},
-                              label: Text(
-                                StringManager.addToCart,
-                                style: StyleManager.font12Medium(),
-                              ),
-                              icon: SvgPicture.asset(
-                                AssetsManager.cartIcon,
-                                color: ColorManager.primaryDarkColor,
-                              ),
-                            )
+                                  style: StyleManager.font12Medium(
+                                      color: ColorManager.primaryDarkColor),
+                                )),
+                                Flexible(
+                                    child: Text(
+                                  'Pomegranate',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                  style: StyleManager.font14Bold(),
+                                )),
+                                Flexible(
+
+                                    child: Text(
+                                  '1.50 lbs',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                  style: StyleManager.font12Medium(
+                                    color: ColorManager.grayColor,
+                                  ),
+                                )),
+                                const Spacer(),
+                                Divider(),
+                                TextButton.icon(
+                                  onPressed: () {},
+                                  label: Text(
+                                    StringManager.addToCart,
+                                    style: StyleManager.font12Medium(),
+                                  ),
+                                  icon: SvgPicture.asset(
+                                    AssetsManager.cartIcon,
+                                    color: ColorManager.primaryDarkColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                            StatefulBuilder(builder: (context, FavoriteSetState) {
+                              return Positioned(
+                                right: 0,
+                                child: IconButton(
+                                  onPressed: () {
+                                    FavoriteSetState(() {
+                                      isFav = !isFav;
+                                    });
+                                  },
+                                  icon: ZoomIn(
+                                    key: UniqueKey(),
+                                    child: Icon(
+                                      isFav
+                                          ? Icons.favorite
+                                          : Icons.favorite_outline,
+                                      size: isFav ? 30.sp : null,
+                                      color: isFav
+                                          ? ColorManager.errorColor
+                                          : ColorManager.grayColor,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })
                           ],
                         ),
-                        StatefulBuilder(builder: (context, FavoriteSetState) {
-                          return Positioned(
-                            right: 0,
-                            child: IconButton(
-                              onPressed: () {
-                                FavoriteSetState(() {
-                                  isFav = !isFav;
-                                });
-                              },
-                              icon: ZoomIn(
-                                key: UniqueKey(),
-                                child: Icon(
-                                  isFav
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  size: isFav ? 30.sp : null,
-                                  color: isFav
-                                      ? ColorManager.errorColor
-                                      : ColorManager.grayColor,
-                                ),
-                              ),
-                            ),
-                          );
-                        })
-                      ],
+                      ),
                     ),
                   );
                 },
